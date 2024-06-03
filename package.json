@@ -11,7 +11,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "surge": "ionic build --prod && surge --project ./www --domain http://cyclando.surge.sh/",
-    "prettier": "prettier --write src/**/*.{ts,html,scss}"
+    "prettier": "prettier --write src/**/*.{ts,html,scss}",
+    "prepare": "husky"
   },
   "private": true,
   "dependencies": {
