@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { StoreModule } from '@ngrx/store';
 import { authReducer } from './state/auth/auth.reducer';
-import { EffectsModule } from '@ngrx/effects'; 
+import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthEffects } from './state/auth/auth.effects';
 import { environment } from 'src/environments/environment';
@@ -16,14 +16,17 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    BrowserModule, 
+    BrowserModule,
     HttpClientModule,
-    AppRoutingModule, 
-    IonicModule.forRoot(), 
-    StoreModule.forRoot({auth:authReducer}), 
-    EffectsModule.forRoot([AuthEffects, ]), 
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-  ],   
+    AppRoutingModule,
+    IonicModule.forRoot(),
+    StoreModule.forRoot({ auth: authReducer }),
+    EffectsModule.forRoot([AuthEffects]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
+  ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
