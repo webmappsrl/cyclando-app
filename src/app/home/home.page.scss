@@ -1,27 +1,79 @@
-#container {
-  text-align: center;
+:host {
+  ion-content {
+    --background: linear-gradient(#FFECD1, #FFECD100);
+    font-family: var(--ion-font-family); /* Applicazione del font */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 20px;
+  }
 
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
+  .container {
+    text-align: center;
+    padding: 20px;
+    max-width: 400px;
+    margin: 0 auto;
+  }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
+  .logo img {
+    width: 220px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+  }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
+  .icon img {
+    width: 224.44px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
 
-  color: #8c8c8c;
+  h1 {
+    color: var(--ion-text-color-primary);
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
 
-  margin: 0;
-}
+  p {
+    color: var(--ion-text-color-secondary);
+    font-size: 16px;
+    margin-bottom: 20px;
+    font-weight: 400;
+  }
 
-#container a {
-  text-decoration: none;
+  ion-button {
+    --border-radius: 8px;
+    --box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 10px 0;
+    font-weight: 500; /* Medium */
+    width: 100%;
+    height: 55px; /* Altezza dei pulsanti */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .create-account {
+    --background: var(--ion-color-primary);
+    --color: var(--ion-color-primary-contrast);
+    margin-top: 80px;
+  }
+
+  .login-account {
+    --background: var(--ion-color-contrast);
+    --border-width: 1px;
+    color: var(--ion-color-primary);
+  }
+
+  small {
+    color: var(--ion-text-color-secondary);
+    font-size: 12px;
+  }
+
+  a {
+    color: var(--ion-link-color);
+    text-decoration: underline;
+  }
 }

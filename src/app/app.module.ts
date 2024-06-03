@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { StoreModule } from '@ngrx/store';
 import { authReducer } from './state/auth/auth.reducer';
 import { EffectsModule } from '@ngrx/effects'; 
+import { HttpClientModule } from '@angular/common/http';
 import { AuthEffects } from './state/auth/auth.effects';
 import { environment } from 'src/environments/environment';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -16,6 +17,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
   declarations: [AppComponent],
   imports: [
     BrowserModule, 
+    HttpClientModule,
     AppRoutingModule, 
     IonicModule.forRoot(), 
     StoreModule.forRoot({auth:authReducer}), 

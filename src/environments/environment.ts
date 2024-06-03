@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api:'https://becyclando.dev.cyclando.com/api/v1/auth/register'
+  api:'https://becyclando.dev.cyclando.com/api/v1/api'
 };
 
 /*
