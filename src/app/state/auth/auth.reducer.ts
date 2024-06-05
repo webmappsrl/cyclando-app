@@ -18,10 +18,22 @@ import {
 export const authReducer = createReducer(
   initialAuthState,
   on(login, register, loadUser, state => ({ ...state, loading: true })),
-  on(loginSuccess, registerSuccess, (state, { user }) => ({
+  on(loginSuccess, (state, { loginResponse }) => {
+    localStorage.setItem('access_token', loginResponse.token);
+    return {
+      ...state,
+      loginResponse,
+      loading: false,
+      emailConfirmed: true,
+      isAuthenticated: true,
+      error: null,
+    };
+  }),
+  on(registerSuccess, (state, { user }) => ({
     ...state,
     user,
     loading: false,
+    emailConfirmed: false,
     isAuthenticated: true,
     error: null,
   })),
