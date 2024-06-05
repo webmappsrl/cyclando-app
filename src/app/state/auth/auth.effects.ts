@@ -1,67 +1,104 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { HttpClient } from '@angular/common/http';
-import { catchError, map, mergeMap, of } from 'rxjs';
+import { catchError, map, mergeMap, of, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { environment as env } from 'src/environments/environment';
 
-import { User } from '../../models/user.model';
-import { loadUser, loadUserFailure, loadUserSuccess, login, loginFailure, loginSuccess, logout, logoutFailure, logoutSuccess, register, registerFailure, registerSuccess } from './auth.actions';
+import { LoginResponse, User } from '../../models/user.model';
+import {
+  loadUser,
+  loadUserFailure,
+  loadUserSuccess,
+  login,
+  loginFailure,
+  loginSuccess,
+  logout,
+  logoutFailure,
+  logoutSuccess,
+  register,
+  registerFailure,
+  registerSuccess,
+} from './auth.actions';
 
 @Injectable()
 export class AuthEffects {
+  constructor(
+    private _actions$: Actions,
+    private _http: HttpClient,
+    private _router: Router,
+  ) {}
+
   loadUser$ = createEffect(() =>
-    this.actions$.pipe(
+    this._actions$.pipe(
       ofType(loadUser),
       mergeMap(() =>
-        this.http.get<User>(`${env.api}/v1/auth/user`).pipe(
-          map((user) => loadUserSuccess({ user })),
-          catchError((error) => of(loadUserFailure({ error: error.message })))
-        )
-      )
-    )
+        this._http.get<User>(`${env.api}/v1/auth/user`).pipe(
+          map(user => loadUserSuccess({ user })),
+          catchError(error => of(loadUserFailure({ error: error.message }))),
+        ),
+      ),
+    ),
   );
   login$ = createEffect(() =>
-    this.actions$.pipe(
+    this._actions$.pipe(
       ofType(login),
       mergeMap(({ email, password }) =>
-        this.http.post<User>(`${env.api}/v1/auth/login`, { email, password }).pipe(
-          map((user) => loginSuccess({ user })),
-          catchError((error) => of(loginFailure({ error: error.message })))
-        )
-      )
-    )
+        this._http
+          .post<LoginResponse>(`${env.api}/v1/auth/login`, { email, password })
+          .pipe(
+            map(loginResponse => loginSuccess({ loginResponse })),
+            catchError(error =>
+              of(loginFailure({ error: error.error.message })),
+            ),
+          ),
+      ),
+    ),
   );
   logout$ = createEffect(() =>
-    this.actions$.pipe(
+    this._actions$.pipe(
       ofType(logout),
       mergeMap(() =>
-        this.http.post(`${env.api}/v1/auth/logout`, {}).pipe(
+        this._http.post(`${env.api}/v1/auth/logout`, {}).pipe(
           map(() => logoutSuccess()),
-          catchError((error) => of(logoutFailure({ error: error.message })))
-        )
-      )
-    )
+          catchError(error => of(logoutFailure({ error: error.message }))),
+        ),
+      ),
+    ),
   );
   navigateToHome$ = createEffect(
     () =>
-      this.actions$.pipe(
-        ofType(loginSuccess, registerSuccess, logoutSuccess),
-        map(() => this.router.navigate(['/']))
+      this._actions$.pipe(
+        ofType(loginSuccess, registerSuccess),
+        map(() => this._router.navigate(['/user-home'])),
       ),
-    { dispatch: false }
+    { dispatch: false },
+  );
+  navigateToAuth$ = createEffect(
+    () =>
+      this._actions$.pipe(
+        ofType(logoutSuccess),
+        map(() => this._router.navigate(['/'])),
+      ),
+    { dispatch: false },
   );
   register$ = createEffect(() =>
-    this.actions$.pipe(
+    this._actions$.pipe(
       ofType(register),
-      mergeMap(({ email, password, name }) =>
-        this.http.post<User>(`${env.api}/v1/auth/register`, { email, password, name }).pipe(
-          map((user) => registerSuccess({ user })),
-          catchError((error) => of(registerFailure({ error: error.message })))
-        )
-      )
-    )
+      mergeMap(({ name, email, password, password_confirmation, lang }) =>
+        this._http
+          .post<User>(`${env.api}/v1/auth/register`, {
+            name,
+            email,
+            password,
+            password_confirmation,
+            lang,
+          })
+          .pipe(
+            map(user => registerSuccess({ user })),
+            catchError(error => of(registerFailure({ error: error.message }))),
+          ),
+      ),
+    ),
   );
-
-  constructor(private actions$: Actions, private http: HttpClient, private router: Router) {}
 }
