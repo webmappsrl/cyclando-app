@@ -1,0 +1,64 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button
+        text="indietro"
+        icon="chevron-back-outline"
+        color="medium"
+      ></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registrati</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+    <h1>Pronti per l’avventura?</h1>
+    <p>
+      Entra gratis nella community e ricevi offerte esclusive e nuovi itinerari
+      per te.
+    </p>
+    <form id="register-form" [formGroup]="registerForm">
+      <ion-list>
+        <ion-item>
+          <ion-input
+            type="text"
+            formControlName="name"
+            placeholder="Nome"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input
+            type="text"
+            formControlName="surname"
+            placeholder="Cognome"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input
+            type="email"
+            formControlName="email"
+            placeholder="Email"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input
+            type="password"
+            formControlName="password"
+            placeholder="Password"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input
+            type="password"
+            formControlName="password_confirmation"
+            placeholder="Conferma Password"
+          ></ion-input>
+        </ion-item>
+      </ion-list>
+      <ion-button class="submit-login" expand="block" type="submit"
+        >REGISTRATI</ion-button
+      >
+    </form>
+  </div>
+</ion-content>
