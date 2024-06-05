@@ -1,16 +1,4 @@
 :host {
-  ion-toolbar {
-    --min-height: 74px;
-    --background: var(--ion-color-primary-contrast);
-    border-bottom: 1px solid var(--ion-color-medium);
-  }
-  .container {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    padding: 16px;
-    max-width: 400px;
-  }
   h1 {
     font-weight: bold;
     margin: 8px 0px;
@@ -18,6 +6,9 @@
   p {
     margin: 0;
     line-height: 1.5;
+  }
+  ion-list {
+    margin-bottom: 24px;
   }
   ion-item {
     --padding-start: 0px;
