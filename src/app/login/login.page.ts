@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { login } from '../state/auth/auth.actions';
+import { selectError, selectLoading } from '../state/auth/auth.selector';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -10,6 +12,9 @@ import { login } from '../state/auth/auth.actions';
 })
 export class LoginPage {
   loginForm: FormGroup<any>;
+  // osservabili con $
+  loading$: Observable<boolean> = this._store.select(selectLoading);
+  error$: Observable<string | null> = this._store.select(selectError);
 
   constructor(
     private _fb: FormBuilder,
