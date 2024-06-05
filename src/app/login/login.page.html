@@ -1,0 +1,78 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button
+        text="indietro"
+        icon="chevron-back-outline"
+        color="medium"
+      ></ion-back-button>
+    </ion-buttons>
+    <ion-title>Accedi</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+    <h1>Entra nel tuo profilo</h1>
+    <p>
+      Accedi con la tua email per ricevere il link per entrare nel tuo profilo.
+    </p>
+    <form id="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <ion-list>
+        <ion-item>
+          <ion-input
+            type="email"
+            formControlName="email"
+            placeholder="Email"
+          ></ion-input>
+        </ion-item>
+        <div
+          *ngIf="loginForm.get('email')?.invalid && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)"
+        >
+          <ion-text
+            class="inpt-error"
+            color="danger"
+            *ngIf="loginForm.get('email')?.errors?.['required']"
+          >
+            Email is required.
+          </ion-text>
+          <ion-text
+            class="inpt-error"
+            color="danger"
+            *ngIf="loginForm.get('email')?.errors?.['email']"
+          >
+            Invalid email format.
+          </ion-text>
+        </div>
+        <ion-item>
+          <ion-input
+            type="password"
+            formControlName="password"
+            placeholder="Password"
+          ></ion-input>
+        </ion-item>
+        <div
+          *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)"
+        >
+          <ion-text
+            class="inpt-error"
+            color="danger"
+            *ngIf="loginForm.get('password')?.errors?.['required']"
+          >
+            Password is required.
+          </ion-text>
+          <ion-text
+            class="inpt-error"
+            color="danger"
+            *ngIf="loginForm.get('password')?.errors?.['minlength']"
+          >
+            8 characters long.
+          </ion-text>
+        </div>
+      </ion-list>
+      <ion-button class="submit-login" expand="block" type="submit"
+        >ACCEDI</ion-button
+      >
+    </form>
+  </div>
+</ion-content>

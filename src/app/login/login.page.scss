@@ -1,0 +1,30 @@
+:host {
+  ion-toolbar {
+    --min-height: 74px;
+    --background: var(--ion-color-primary-contrast);
+    border-bottom: 1px solid var(--ion-color-medium);
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 16px;
+    max-width: 400px;
+  }
+  h1 {
+    font-weight: bold;
+    margin: 8px 0px;
+  }
+  p {
+    margin: 0;
+    line-height: 1.5;
+  }
+  ion-item {
+    --padding-start: 0px;
+    --border-color: var(--ion-color-medium);
+  }
+  ion-input {
+    --placeholder-color: var(--ion-color-medium);
+    --placeholder-font-weight: 500;
+  }
+}
