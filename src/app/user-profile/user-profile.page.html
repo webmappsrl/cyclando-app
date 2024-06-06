@@ -1,0 +1,55 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button
+        text="indietro"
+        icon="chevron-back-outline"
+        color="medium"
+      ></ion-back-button>
+    </ion-buttons>
+    <ion-title>Profilo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+    <div *ngIf="userProfile$ | async as up" class="user-profile-top">
+      <div class="user-profile">{{getInitials(up.user.name)}}</div>
+      <div class="user-name">{{up.user.name}}</div>
+    </div>
+    <ion-list>
+      <ion-list-header>
+        <ion-label>Assistenza</ion-label>
+      </ion-list-header>
+      <ion-item>
+        <ion-label>Domande Frequenti</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Parla con un operatore</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Lascia una recensione</ion-label>
+      </ion-item>
+    </ion-list>
+    <ion-list>
+      <ion-list-header>
+        <ion-label>Generali</ion-label>
+      </ion-list-header>
+      <ion-item>
+        <ion-label>Privacy Policy</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Parla con un operatore</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Lascia una recensione</ion-label>
+      </ion-item>
+    </ion-list>
+    <ion-button class="btn-logout" fill="outline" expand="block" color="dark"
+      >Esci dal tuo account</ion-button
+    >
+    <ion-button fill="clear" expand="block" color="danger"
+      >Elimina account</ion-button
+    >
+  </div>
+</ion-content>
