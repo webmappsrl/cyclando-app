@@ -71,7 +71,11 @@
         </div>
       </ion-list>
       <div *ngIf="error$|async as error">
-        <ion-text color="danger"> {{error}} </ion-text>
+        <ion-text
+          color="danger"
+        >
+          {{error}}
+        </ion-text>
       </div>
       <ion-button class="submit-login" expand="block" type="submit"
         >ACCEDI</ion-button
