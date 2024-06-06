@@ -9,11 +9,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { StoreModule } from '@ngrx/store';
 import { authReducer } from './state/auth/auth.reducer';
 import { EffectsModule } from '@ngrx/effects';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthEffects } from './state/auth/auth.effects';
 import { environment } from 'src/environments/environment';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AuthInterceptor } from './state/auth/auth.interceptor';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -31,7 +32,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     }),
     ReactiveFormsModule,
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
