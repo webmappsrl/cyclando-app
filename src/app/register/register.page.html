@@ -27,6 +27,17 @@
             placeholder="Nome"
           ></ion-input>
         </ion-item>
+        <div
+          *ngIf="registerForm.get('name')?.invalid && (registerForm.get('name')?.dirty || registerForm.get('name')?.touched)"
+        >
+          <ion-text
+            class="inpt-error"
+            color="danger"
+            *ngIf="registerForm.get('name')?.errors?.['required']"
+          >
+            Name is required.
+          </ion-text>
+        </div>
         <ion-item>
           <ion-input
             type="text"
@@ -34,6 +45,17 @@
             placeholder="Cognome"
           ></ion-input>
         </ion-item>
+        <div
+          *ngIf="registerForm.get('surname')?.invalid && (registerForm.get('surname')?.dirty || registerForm.get('surname')?.touched)"
+        >
+          <ion-text
+            class="inpt-error"
+            color="danger"
+            *ngIf="registerForm.get('surname')?.errors?.['required']"
+          >
+            Surname is required.
+          </ion-text>
+        </div>
         <ion-item>
           <ion-input
             type="email"
@@ -41,6 +63,24 @@
             placeholder="Email"
           ></ion-input>
         </ion-item>
+        <div
+          *ngIf="registerForm.get('email')?.invalid && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched)"
+        >
+          <ion-text
+            class="inpt-error"
+            color="danger"
+            *ngIf="registerForm.get('email')?.errors?.['required']"
+          >
+            Email is required.
+          </ion-text>
+          <ion-text
+            class="inpt-error"
+            color="danger"
+            *ngIf="registerForm.get('email')?.errors?.['email']"
+          >
+            Invalid email format.
+          </ion-text>
+        </div>
         <ion-item>
           <ion-input
             type="password"
@@ -48,6 +88,24 @@
             placeholder="Password"
           ></ion-input>
         </ion-item>
+        <div
+          *ngIf="registerForm.get('password')?.invalid && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched)"
+        >
+          <ion-text
+            class="inpt-error"
+            color="danger"
+            *ngIf="registerForm.get('password')?.errors?.['required']"
+          >
+            Password is required.
+          </ion-text>
+          <ion-text
+            class="inpt-error"
+            color="danger"
+            *ngIf="registerForm.get('password')?.errors?.['minlength']"
+          >
+            8 characters long.
+          </ion-text>
+        </div>
         <ion-item>
           <ion-input
             type="password"
@@ -55,6 +113,13 @@
             placeholder="Conferma Password"
           ></ion-input>
         </ion-item>
+        <div
+          *ngIf="registerForm.errors?.['stringMismatch'] && registerForm.get('password')?.touched"
+        >
+          <ion-text class="inpt-error" color="danger">
+            Passwords do not match.
+          </ion-text>
+        </div>
       </ion-list>
       <ion-button class="submit-login" expand="block" type="submit"
         >REGISTRATI</ion-button

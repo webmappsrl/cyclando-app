@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { register } from '../state/auth/auth.actions';
+import { stringMatchValidator } from '../validators/string-match.validators';
 
 @Component({
   selector: 'app-register',
@@ -15,16 +16,19 @@ export class RegisterPage {
     private _fb: FormBuilder,
     private _store: Store,
   ) {
-    this.registerForm = this._fb.group({
-      name: ['', [Validators.required]],
-      surname: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
-      password_confirmation: [
-        '',
-        [Validators.required, Validators.minLength(8)],
-      ],
-    });
+    this.registerForm = this._fb.group(
+      {
+        name: ['', [Validators.required]],
+        surname: ['', [Validators.required]],
+        email: ['', [Validators.required, Validators.email]],
+        password: ['', [Validators.required, Validators.minLength(8)]],
+        password_confirmation: [
+          '',
+          [Validators.required, Validators.minLength(8)],
+        ],
+      },
+      { validators: stringMatchValidator('password', 'password_confirmation') },
+    );
   }
 
   onSubmit(): void {
@@ -34,7 +38,7 @@ export class RegisterPage {
         //TODO: da controllare corrispondenza dati di registrazione con form
         register({
           ...registerValue,
-          name: registerValue.name + ' ' + registerValue.surname,
+          name: `${registerValue.name} ${registerValue.surname}`,
           lang: 'it',
         }),
       );
