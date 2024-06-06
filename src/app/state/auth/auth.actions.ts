@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { LoginResponse, User } from '../../models/user.model';
+import { LoginResponse, User, UserProfile } from '../../models/user.model';
 
 export const login = createAction(
   '[Auth] Login',
@@ -47,5 +47,15 @@ export const loadUserSuccess = createAction(
 );
 export const loadUserFailure = createAction(
   '[Auth] Load User Failure',
+  props<{ error: string }>(),
+);
+
+export const loadUserProfile = createAction('[Auth] Load User Profile');
+export const loadUserProfileSuccess = createAction(
+  '[Auth] Load User Profile Success',
+  props<{ userProfile: UserProfile }>(),
+);
+export const loadUserProfileFailure = createAction(
+  '[Auth] Load User Profile Failure',
   props<{ error: string }>(),
 );

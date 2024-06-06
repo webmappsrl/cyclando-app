@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { AuthState, initialAuthState } from './auth.state';
+import { initialAuthState } from './auth.state';
 import {
   login,
   loginSuccess,
@@ -13,11 +13,17 @@ import {
   loadUser,
   loadUserSuccess,
   loadUserFailure,
+  loadUserProfile,
+  loadUserProfileFailure,
+  loadUserProfileSuccess,
 } from './auth.actions';
 
 export const authReducer = createReducer(
   initialAuthState,
-  on(login, register, loadUser, state => ({ ...state, loading: true })),
+  on(login, register, loadUser, loadUserProfile, state => ({
+    ...state,
+    loading: true,
+  })),
   on(loginSuccess, (state, { loginResponse }) => {
     localStorage.setItem('access_token', loginResponse.token);
     return {
@@ -37,11 +43,17 @@ export const authReducer = createReducer(
     isAuthenticated: true,
     error: null,
   })),
-  on(loginFailure, registerFailure, loadUserFailure, (state, { error }) => ({
-    ...state,
-    loading: false,
-    error,
-  })),
+  on(
+    loginFailure,
+    registerFailure,
+    loadUserFailure,
+    loadUserProfileFailure,
+    (state, { error }) => ({
+      ...state,
+      loading: false,
+      error,
+    }),
+  ),
   on(logout, state => ({ ...state, loading: true })),
   on(logoutSuccess, state => ({
     ...state,
@@ -60,6 +72,12 @@ export const authReducer = createReducer(
     user,
     loading: false,
     isAuthenticated: true,
+    error: null,
+  })),
+  on(loadUserProfileSuccess, (state, { userProfile }) => ({
+    ...state,
+    userProfile,
+    loading: false,
     error: null,
   })),
 );
