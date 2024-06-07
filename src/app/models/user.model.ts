@@ -7,27 +7,17 @@ export interface LoginResponse {
   token: string;
   user: User;
 }
-interface TripRouteName {
+
+export interface Languages {
   en: string;
   it: string;
 }
-interface TripRouteSlug {
-  en: string;
-  it: string;
-}
-interface TripRouteActivity {
-  en: string;
-  it: string;
-}
-interface TripRouteLocation {
-  en: string;
-  it: string;
-}
-interface TripRouteParentLocation {
-  en: string;
-  it: string;
-}
-interface TripRoute {
+export interface TripRouteName extends Languages {}
+export interface TripRouteSlug extends Languages {}
+export interface TripRouteActivity extends Languages {}
+export interface TripRouteLocation extends Languages {}
+export interface TripRouteParentLocation extends Languages {}
+export interface TripRoute {
   distance: number;
   duration: number;
   name: TripRouteName;
