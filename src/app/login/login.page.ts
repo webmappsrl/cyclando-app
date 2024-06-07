@@ -14,7 +14,7 @@ export class LoginPage {
   loginForm: FormGroup<any>;
   // osservabili con $
   loading$: Observable<boolean> = this._store.select(selectLoading);
-  error$: Observable<string | null> = this._store.select(selectError);
+  error$: Observable<string | undefined> = this._store.select(selectError);
 
   constructor(
     private _fb: FormBuilder,

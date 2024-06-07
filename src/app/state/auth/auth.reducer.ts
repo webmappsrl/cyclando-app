@@ -32,7 +32,7 @@ export const authReducer = createReducer(
       loading: false,
       emailConfirmed: true,
       isAuthenticated: true,
-      error: null,
+      error: undefined,
     };
   }),
   on(registerSuccess, (state, { user }) => ({
@@ -41,7 +41,7 @@ export const authReducer = createReducer(
     loading: false,
     emailConfirmed: false,
     isAuthenticated: true,
-    error: null,
+    error: undefined,
   })),
   on(
     loginFailure,
@@ -57,10 +57,10 @@ export const authReducer = createReducer(
   on(logout, state => ({ ...state, loading: true })),
   on(logoutSuccess, state => ({
     ...state,
-    user: null,
+    user: undefined,
     isAuthenticated: false,
     loading: false,
-    error: null,
+    error: undefined,
   })),
   on(logoutFailure, (state, { error }) => ({
     ...state,
@@ -72,12 +72,12 @@ export const authReducer = createReducer(
     user,
     loading: false,
     isAuthenticated: true,
-    error: null,
+    error: undefined,
   })),
   on(loadUserProfileSuccess, (state, { userProfile }) => ({
     ...state,
     userProfile,
     loading: false,
-    error: null,
+    error: undefined,
   })),
 );
