@@ -14,7 +14,7 @@ import { UtilityService } from '../shared/services/utility.service';
 })
 export class UserHomePage implements OnInit {
   //TODO: controllo degli errori nel recuper dello user profile
-  userProfile$: Observable<UserProfile | null>;
+  userProfile$: Observable<UserProfile | undefined>;
 
   constructor(
     private _store: Store,

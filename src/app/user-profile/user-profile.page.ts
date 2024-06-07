@@ -11,7 +11,7 @@ import { selectUserProfile } from '../state/auth/auth.selector';
   styleUrls: ['./user-profile.page.scss'],
 })
 export class UserProfilePage {
-  userProfile$: Observable<UserProfile | null>;
+  userProfile$: Observable<UserProfile | undefined>;
 
   constructor(
     private _store: Store,
