@@ -1,0 +1,27 @@
+:host {
+  .user-profile-top {
+    height: 83px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--ion-color-medium);
+    .user-profile {
+      height: 63px;
+      width: 63px;
+      margin-left: 0;
+      border-color: var(--ion-color-dark);
+      font-weight: 800;
+      font-size: 26px;
+    }
+    .user-name {
+      font-size: 21px;
+      font-weight: 800;
+    }
+  }
+  ion-list-header {
+    font-size: 18px;
+    padding-left: var(--ion-safe-area-left, 0px);
+  }
+  .btn-logout {
+    margin-top: 24px;
+  }
+}

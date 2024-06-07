@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { AuthState, initialAuthState } from './auth.state';
+import { initialAuthState } from './auth.state';
 import {
   login,
   loginSuccess,
@@ -13,11 +13,17 @@ import {
   loadUser,
   loadUserSuccess,
   loadUserFailure,
+  loadUserProfile,
+  loadUserProfileFailure,
+  loadUserProfileSuccess,
 } from './auth.actions';
 
 export const authReducer = createReducer(
   initialAuthState,
-  on(login, register, loadUser, state => ({ ...state, loading: true })),
+  on(login, register, loadUser, loadUserProfile, state => ({
+    ...state,
+    loading: true,
+  })),
   on(loginSuccess, (state, { loginResponse }) => {
     localStorage.setItem('access_token', loginResponse.token);
     return {
@@ -26,7 +32,7 @@ export const authReducer = createReducer(
       loading: false,
       emailConfirmed: true,
       isAuthenticated: true,
-      error: null,
+      error: undefined,
     };
   }),
   on(registerSuccess, (state, { user }) => ({
@@ -35,20 +41,26 @@ export const authReducer = createReducer(
     loading: false,
     emailConfirmed: false,
     isAuthenticated: true,
-    error: null,
+    error: undefined,
   })),
-  on(loginFailure, registerFailure, loadUserFailure, (state, { error }) => ({
-    ...state,
-    loading: false,
-    error,
-  })),
+  on(
+    loginFailure,
+    registerFailure,
+    loadUserFailure,
+    loadUserProfileFailure,
+    (state, { error }) => ({
+      ...state,
+      loading: false,
+      error,
+    }),
+  ),
   on(logout, state => ({ ...state, loading: true })),
   on(logoutSuccess, state => ({
     ...state,
-    user: null,
+    user: undefined,
     isAuthenticated: false,
     loading: false,
-    error: null,
+    error: undefined,
   })),
   on(logoutFailure, (state, { error }) => ({
     ...state,
@@ -60,6 +72,12 @@ export const authReducer = createReducer(
     user,
     loading: false,
     isAuthenticated: true,
-    error: null,
+    error: undefined,
+  })),
+  on(loadUserProfileSuccess, (state, { userProfile }) => ({
+    ...state,
+    userProfile,
+    loading: false,
+    error: undefined,
   })),
 );

@@ -1,11 +1,43 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Cyclando</ion-title>
+    <div class="logo" slot="start">
+      <img src="assets/img/cyclando-logo.png" alt="Cyclando Logo" />
+    </div>
+    <div slot="end">
+      <div
+        *ngIf="userProfile$ | async as up"
+        class="user-profile ion-activatable ripple-parent"
+        (click)="navigateToUserProfile()"
+      >
+        {{ getInitials(up.user.name) }}
+        <ion-ripple-effect></ion-ripple-effect>
+      </div>
+    </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="container">
-    <h1>I miei viaggi</h1>
+  <div class="container" *ngIf="userProfile$ | async as userProfile">
+    <div
+      *ngIf="userProfile.purchased_trips && userProfile.purchased_trips.length > 0; else noTrips"
+    >
+      {{userProfile.purchased_trips.length}}
+    </div>
+    <ng-template #noTrips>
+      <div class="no-trips">
+        <h1>Non sono presenti documenti di viaggio</h1>
+        <p>
+          Li ottieni dopo aver acquistato uno dei nostri percorsi sul nostro
+          sito <br /><span>cyclando.com</span>
+        </p>
+        <ion-button
+          class="submit-login"
+          expand="block"
+          type="submit"
+          (click)="openWebpage()"
+          >VISITA IL SITO</ion-button
+        >
+      </div>
+    </ng-template>
   </div>
 </ion-content>

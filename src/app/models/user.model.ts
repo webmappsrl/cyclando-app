@@ -3,8 +3,43 @@ export interface User {
   id: number;
   name: string;
 }
-
 export interface LoginResponse {
   token: string;
   user: User;
+}
+
+export interface Languages {
+  en: string;
+  it: string;
+}
+export interface TripRouteName extends Languages {}
+export interface TripRouteSlug extends Languages {}
+export interface TripRouteActivity extends Languages {}
+export interface TripRouteLocation extends Languages {}
+export interface TripRouteParentLocation extends Languages {}
+export interface TripRoute {
+  distance: number;
+  duration: number;
+  name: TripRouteName;
+  slug: TripRouteSlug;
+  image_url: string;
+  activities: TripRouteActivity[];
+  location: TripRouteLocation;
+  parent_location: TripRouteParentLocation;
+}
+export interface Trip {
+  name: string;
+  tree_planted: boolean;
+  from: string;
+  to: string;
+  balance_paid: boolean;
+  account_paid: boolean;
+  route: TripRoute;
+}
+
+export interface UserProfile {
+  user: User;
+  km_travelled: number;
+  trees_planted: number;
+  purchased_trips: Array<Trip>;
 }
