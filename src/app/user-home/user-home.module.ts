@@ -8,11 +8,16 @@ import { UserHomePageRoutingModule } from './user-home-routing.module';
 
 import { UserHomePage } from './user-home.page';
 import { TripCardComponent } from './components/trip-card/trip-card.component';
-import { DistancePipe } from '../shared/pipes/distances.pipe';
-import { CyTransPipe } from '../shared/pipes/cytrans.pipe';
+import { CyPipeModule } from '../shared/pipes/pipe.module';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, IonicModule, UserHomePageRoutingModule],
-  declarations: [UserHomePage, TripCardComponent, DistancePipe, CyTransPipe],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    UserHomePageRoutingModule,
+    CyPipeModule,
+  ],
+  declarations: [UserHomePage, TripCardComponent],
 })
 export class UserHomePageModule {}

@@ -5,7 +5,7 @@
     <ion-card-title>{{ trip.route.name.it }}</ion-card-title>
     <ion-card-subtitle>
       <img src="assets/icon/pin-icon.svg" />
-      <span>{{ trip.route.location.it }}</span>
+      <span>{{ trip.route.location | cytrans }}</span>
     </ion-card-subtitle>
   </ion-card-header>
   <ion-card-content>
@@ -17,7 +17,7 @@
       </div>
       <div class="activities">
         <ng-container *ngFor="let act of trip.route.activities">
-          <div>{{ act.it | cytrans }}</div>
+          <div>{{ act | cytrans }}</div>
         </ng-container>
       </div>
       <div class="duration">
