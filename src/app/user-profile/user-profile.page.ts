@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { UserProfile } from '../models/user.model';
 import { Store } from '@ngrx/store';
 import { selectUserProfile } from '../state/auth/auth.selector';
+import { logout } from '../state/auth/auth.actions';
 
 @Component({
   selector: 'app-user-profile',
@@ -22,5 +23,9 @@ export class UserProfilePage {
 
   getInitials(name: string): string {
     return this._utilityService.getInitials(name);
+  }
+
+  logout(): void {
+    this._store.dispatch(logout());
   }
 }
