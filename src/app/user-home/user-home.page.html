@@ -21,7 +21,11 @@
     <div
       *ngIf="userProfile.purchased_trips && userProfile.purchased_trips.length > 0; else noTrips"
     >
-      {{userProfile.purchased_trips.length}}
+      <h2>Documenti di viaggio</h2>
+      <app-trip-card
+        *ngFor="let trip of userProfile.purchased_trips"
+        [trip]="trip"
+      ></app-trip-card>
     </div>
     <ng-template #noTrips>
       <div class="no-trips">

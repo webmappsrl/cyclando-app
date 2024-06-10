@@ -23,6 +23,60 @@ import {
   loadUserProfileFailure,
 } from './auth.actions';
 
+const mokUserProfile: UserProfile = {
+  user: {
+    id: 1,
+    name: 'BBBBB BBBB',
+    email: 'testbbbb@gmail.com',
+  },
+  km_travelled: 0,
+  trees_planted: 1,
+  purchased_trips: [
+    {
+      name: 'BBBBB BBBB - Il Sud Ovest della Sardegna',
+      tree_planted: false,
+      from: '2024-06-17T22:00:00.000000Z',
+      balance_paid: true,
+      account_paid: false,
+      route: {
+        id: 369,
+        distance: 140,
+        duration: 5,
+        name: {
+          it: 'Il Sud Ovest della Sardegna',
+          en: 'The South West of Sardinia',
+        },
+        price: 513,
+        saleable: true,
+        slug: {
+          it: 'il-sud-ovest-della-sardegna',
+          en: 'the-south-west-of-sardinia',
+        },
+        image_url:
+          'https://becyclando.dev.cyclando.com/media/2151/conversions/sardegna-sud-ovest-nebida-ragazza-in-bicicletta-dolcevita-SF0226-thumb.webp',
+        activities: [
+          {
+            it: 'Bici',
+            en: 'Bike',
+          },
+          {
+            it: 'E-Bike',
+            en: 'E-Bike',
+          },
+        ],
+        location: {
+          it: 'Sardegna',
+        },
+        parent_location: {
+          it: 'Italia',
+          en: 'Italy',
+        },
+      },
+    },
+  ],
+  favorites_count: 1,
+};
+
 @Injectable()
 export class AuthEffects {
   constructor(
@@ -71,7 +125,9 @@ export class AuthEffects {
       mergeMap(() =>
         this._http.post(`${env.api}/v1/auth/logout`, {}).pipe(
           map(() => logoutSuccess()),
-          catchError(error => of(logoutFailure({ error: error.message }))),
+          catchError(error =>
+            of(logoutFailure({ error: error.error.message })),
+          ),
         ),
       ),
     ),
@@ -82,7 +138,9 @@ export class AuthEffects {
       mergeMap(() =>
         this._http.get<User>(`${env.api}/v1/auth/user`).pipe(
           map(user => loadUserSuccess({ user })),
-          catchError(error => of(loadUserFailure({ error: error.message }))),
+          catchError(error =>
+            of(loadUserFailure({ error: error.error.message })),
+          ),
         ),
       ),
     ),
@@ -92,9 +150,11 @@ export class AuthEffects {
       ofType(loadUserProfile),
       mergeMap(() =>
         this._http.get<UserProfile>(`${env.api}/v1/auth/user-profile`).pipe(
-          map(userProfile => loadUserProfileSuccess({ userProfile })),
+          map(userProfile =>
+            loadUserProfileSuccess({ userProfile: mokUserProfile }),
+          ),
           catchError(error =>
-            of(loadUserProfileFailure({ error: error.message })),
+            of(loadUserProfileFailure({ error: error.error.message })),
           ),
         ),
       ),
@@ -111,7 +171,7 @@ export class AuthEffects {
   navigateToAuth$ = createEffect(
     () =>
       this._actions$.pipe(
-        ofType(logoutSuccess),
+        ofType(logoutSuccess, loadUserProfileFailure),
         map(() => this._router.navigate(['/'])),
       ),
     { dispatch: false },
