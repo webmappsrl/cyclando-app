@@ -19,37 +19,42 @@
     </div>
     <ion-list>
       <ion-list-header>
-        <ion-label>Assistenza</ion-label>
+        <ion-label>{{'Assistenza' | cytrans}}</ion-label>
       </ion-list-header>
       <ion-item>
-        <ion-label>Domande Frequenti</ion-label>
+        <ion-label>{{'Domande Frequenti' | cytrans}}</ion-label>
       </ion-item>
       <ion-item>
-        <ion-label>Parla con un operatore</ion-label>
+        <ion-label>{{'Parla con un operatore' | cytrans}}</ion-label>
       </ion-item>
       <ion-item>
-        <ion-label>Lascia una recensione</ion-label>
+        <ion-label>{{'Lascia una recensione' | cytrans}}</ion-label>
       </ion-item>
     </ion-list>
     <ion-list>
       <ion-list-header>
-        <ion-label>Generali</ion-label>
+        <ion-label>{{'Generali' | cytrans}}</ion-label>
       </ion-list-header>
       <ion-item>
-        <ion-label>Privacy Policy</ion-label>
+        <ion-label>{{'Privacy Policy' | cytrans}}</ion-label>
       </ion-item>
       <ion-item>
-        <ion-label>Parla con un operatore</ion-label>
+        <ion-label>{{'Parla con un operatore' | cytrans}}</ion-label>
       </ion-item>
       <ion-item>
-        <ion-label>Lascia una recensione</ion-label>
+        <ion-label>{{'Lascia una recensione' | cytrans}}</ion-label>
       </ion-item>
     </ion-list>
-    <ion-button class="btn-logout" fill="outline" expand="block" color="dark"
-      >Esci dal tuo account</ion-button
+    <ion-button
+      class="btn-logout"
+      fill="outline"
+      expand="block"
+      color="dark"
+      (click)="logout()"
+      >{{'Esci dal tuo account' | cytrans}}</ion-button
     >
     <ion-button fill="clear" expand="block" color="danger"
-      >Elimina account</ion-button
+      >{{'Elimina account' | cytrans}}</ion-button
     >
   </div>
 </ion-content>

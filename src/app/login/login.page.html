@@ -7,15 +7,16 @@
         color="medium"
       ></ion-back-button>
     </ion-buttons>
-    <ion-title>Accedi</ion-title>
+    <ion-title>{{"Accedi" | cytrans}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div class="container">
-    <h1>Entra nel tuo profilo</h1>
+    <h1>{{"Entra nel tuo profilo" | cytrans}}</h1>
     <p>
-      Accedi con la tua email per ricevere il link per entrare nel tuo profilo.
+      {{"Accedi con la tua email per ricevere il link per entrare nel tuo
+      profilo." | cytrans}}
     </p>
     <form id="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <ion-list>
@@ -34,14 +35,14 @@
             color="danger"
             *ngIf="loginForm.get('email')?.errors?.['required']"
           >
-            Email is required.
+            {{"Email is required." | cytrans}}
           </ion-text>
           <ion-text
             class="inpt-error"
             color="danger"
             *ngIf="loginForm.get('email')?.errors?.['email']"
           >
-            Invalid email format.
+            {{"Invalid email format." | cytrans}}
           </ion-text>
         </div>
         <ion-item>
@@ -59,26 +60,22 @@
             color="danger"
             *ngIf="loginForm.get('password')?.errors?.['required']"
           >
-            Password is required.
+            {{"Password is required." | cytrans}}
           </ion-text>
           <ion-text
             class="inpt-error"
             color="danger"
             *ngIf="loginForm.get('password')?.errors?.['minlength']"
           >
-            8 characters long.
+            {{"8 characters long." | cytrans}}
           </ion-text>
         </div>
       </ion-list>
       <div *ngIf="error$|async as error">
-        <ion-text
-          color="danger"
-        >
-          {{error}}
-        </ion-text>
+        <ion-text color="danger"> {{error | cytrans}} </ion-text>
       </div>
       <ion-button class="submit-login" expand="block" type="submit"
-        >ACCEDI</ion-button
+        >{{"ACCEDI" | cytrans}}</ion-button
       >
     </form>
   </div>

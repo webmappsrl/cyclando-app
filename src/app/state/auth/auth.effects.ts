@@ -171,7 +171,7 @@ export class AuthEffects {
   navigateToAuth$ = createEffect(
     () =>
       this._actions$.pipe(
-        ofType(logoutSuccess, loadUserProfileFailure),
+        ofType(logoutSuccess, loadUserFailure),
         map(() => this._router.navigate(['/'])),
       ),
     { dispatch: false },

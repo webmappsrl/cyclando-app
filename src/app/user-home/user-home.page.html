@@ -21,7 +21,7 @@
     <div
       *ngIf="userProfile.purchased_trips && userProfile.purchased_trips.length > 0; else noTrips"
     >
-      <h2>Documenti di viaggio</h2>
+      <h2>{{'Documenti di viaggio' | cytrans}}</h2>
       <app-trip-card
         *ngFor="let trip of userProfile.purchased_trips"
         [trip]="trip"
@@ -29,10 +29,11 @@
     </div>
     <ng-template #noTrips>
       <div class="no-trips">
-        <h1>Non sono presenti documenti di viaggio</h1>
+        <h1>{{'Non sono presenti documenti di viaggio' | cytrans}}</h1>
         <p>
-          Li ottieni dopo aver acquistato uno dei nostri percorsi sul nostro
-          sito <br /><span>cyclando.com</span>
+          {{'Li ottieni dopo aver acquistato uno dei nostri percorsi sul nostro
+          sito' | cytrans}}
+          <br /><span>cyclando.com</span>
         </p>
         <ion-button
           class="submit-login"

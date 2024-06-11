@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { UserProfilePageRoutingModule } from './user-profile-routing.module';
 
 import { UserProfilePage } from './user-profile.page';
+import { CyPipeModule } from '../shared/pipes/pipe.module';
 
 @NgModule({
   imports: [
@@ -14,6 +15,7 @@ import { UserProfilePage } from './user-profile.page';
     FormsModule,
     IonicModule,
     UserProfilePageRoutingModule,
+    CyPipeModule,
   ],
   declarations: [UserProfilePage],
 })

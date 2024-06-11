@@ -67,16 +67,13 @@ export const authReducer = createReducer(
     loading: false,
     error,
   })),
-  on(loadUserSuccess, (state, { user }) => {
-    localStorage.removeItem('access_token');
-    return {
-      ...state,
-      user,
-      loading: false,
-      isAuthenticated: true,
-      error: undefined,
-    };
-  }),
+  on(loadUserSuccess, (state, { user }) => ({
+    ...state,
+    user,
+    loading: false,
+    isAuthenticated: true,
+    error: undefined,
+  })),
   on(loadUserProfileSuccess, (state, { userProfile }) => ({
     ...state,
     userProfile,
