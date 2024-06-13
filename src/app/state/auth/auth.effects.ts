@@ -57,12 +57,50 @@ const mokUserProfile: UserProfile = {
           'https://becyclando.dev.cyclando.com/media/2151/conversions/sardegna-sud-ovest-nebida-ragazza-in-bicicletta-dolcevita-SF0226-thumb.webp',
         activities: [
           {
-            it: 'Bici',
-            en: 'Bike',
+            it: 'Tour in bici',
+            en: 'Bike Tours',
           },
           {
-            it: 'E-Bike',
-            en: 'E-Bike',
+            it: 'Tour in e-bike',
+            en: 'E-bike tours',
+          },
+        ],
+        location: {
+          it: 'Sardegna',
+        },
+        parent_location: {
+          it: 'Italia',
+          en: 'Italy',
+        },
+      },
+    },
+    {
+      name: 'BBBBB BBBB - Il Sud Ovest della Sardegna',
+      tree_planted: false,
+      from: '2024-06-17T22:00:00.000000Z',
+      balance_paid: true,
+      account_paid: false,
+      route: {
+        id: 369,
+        distance: 140,
+        duration: 5,
+        name: {
+          it: 'Il Sud Ovest della Sardegna',
+          en: 'The South West of Sardinia',
+        },
+        price: 513,
+        saleable: true,
+        slug: {
+          it: 'il-sud-ovest-della-sardegna',
+          en: 'the-south-west-of-sardinia',
+        },
+        pdf_url: 'https://s29.q4cdn.com/175625835/files/doc_downloads/test.pdf',
+        image_url:
+          'https://becyclando.dev.cyclando.com/media/2151/conversions/sardegna-sud-ovest-nebida-ragazza-in-bicicletta-dolcevita-SF0226-thumb.webp',
+        activities: [
+          {
+            it: 'Tour in bici',
+            en: 'Bike Tours',
           },
         ],
         location: {
@@ -102,7 +140,7 @@ export class AuthEffects {
             },
           )
           .pipe(
-            map(response => registerSuccess(response)),
+            map(response => registerSuccess({ ...response, email, password })),
             catchError(error => of(registerFailure({ error: error.message }))),
           ),
       ),
