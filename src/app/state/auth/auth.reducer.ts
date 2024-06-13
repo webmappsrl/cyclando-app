@@ -35,13 +35,16 @@ export const authReducer = createReducer(
       error: undefined,
     };
   }),
-  on(registerSuccess, (state, { message, success }) => ({
-    ...state,
-    loading: false,
-    emailConfirmed: false,
-    isAuthenticated: true,
-    error: undefined,
-  })),
+  on(registerSuccess, (state, { email, password }) => {
+    localStorage.setItem('register', JSON.stringify({ email, password }));
+    return {
+      ...state,
+      loading: false,
+      emailConfirmed: false,
+      isAuthenticated: true,
+      error: undefined,
+    };
+  }),
   on(
     loginFailure,
     registerFailure,

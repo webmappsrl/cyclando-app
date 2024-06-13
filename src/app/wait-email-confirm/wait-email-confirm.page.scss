@@ -1,7 +1,11 @@
-:host {
+.wait-email-confirm-page {
   .container {
     justify-content: center;
     align-items: center;
     text-align: center;
+  }
+  .email {
+    color: var(--ion-color-primary);
+    font-weight: 600;
   }
 }
