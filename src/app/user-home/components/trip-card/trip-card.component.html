@@ -2,14 +2,14 @@
   <!-- TODO: Modificare l'ombra della card -->
   <img alt="" src="{{ trip.route.image_url }}" />
   <ion-card-header>
-    <ion-card-title>{{ trip.route.name.it }}</ion-card-title>
+    <ion-card-title>{{ trip.route.name | cytrans }}</ion-card-title>
     <ion-card-subtitle>
       <img src="assets/icon/pin-icon.svg" />
       <span>{{ trip.route.location | cytrans }}</span>
     </ion-card-subtitle>
   </ion-card-header>
   <ion-card-content>
-    <div class="data">{{ trip.from | date: 'mediumDate' }}</div>
+    <div class="data">{{ trip.from | dateRange: trip.route.duration }}</div>
     <div class="info">
       <div class="distance">
         <img src="assets/icon/pills-icon.svg" />
@@ -27,7 +27,7 @@
     </div>
   </ion-card-content>
 
-  <ion-button fill="clear">{{
+  <ion-button fill="clear" (click)="openTripPdfViewer()">{{
     'VEDI DOCUMENTO DI VIAGGIO' | cytrans
   }}</ion-button>
 </ion-card>
