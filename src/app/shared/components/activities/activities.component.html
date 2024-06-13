@@ -1,0 +1,43 @@
+<div *ngIf="activities.length === 1">
+  <div class="activity">
+    <img
+      [src]="getIcon(activities[0])"
+      alt="Icona attività"
+      class="activity-icon"
+    />
+    <span class="activity-name">{{ activities[0] | cytrans }}</span>
+    <!-- Mostra il nome in italiano o inglese -->
+  </div>
+</div>
+<div *ngIf="activities.length > 1">
+  <div class="multi-activity" (click)="presentPopover($event)">
+    <img
+      *ngFor="let activity of activities"
+      [src]="getIcon(activity)"
+      alt="Icona attività"
+      class="activity-icon"
+    />
+  </div>
+  <ion-popover
+    #popover
+    [isOpen]="isOpen$ | async"
+    (didDismiss)="isOpen$.next(false)"
+    side="top"
+    alignment="center"
+    mode="ios"
+    class="tooltip"
+  >
+    <ng-template>
+      <ion-content class="ion-padding tooltip-content">
+        <div *ngFor="let activity of activities" class="tooltip-activity">
+          <img
+            [src]="getIcon(activity)"
+            alt="Icona attività"
+            class="activity-icon"
+          />
+          <span class="activity-name">{{ activity | cytrans }}</span>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-popover>
+</div>

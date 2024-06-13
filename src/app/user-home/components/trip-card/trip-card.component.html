@@ -1,10 +1,10 @@
-<ion-card mode="md">
+<ion-card class="trip-card" mode="md">
   <!-- TODO: Modificare l'ombra della card -->
   <img alt="" src="{{ trip.route.image_url }}" />
   <ion-card-header>
     <ion-card-title>{{ trip.route.name | cytrans }}</ion-card-title>
     <ion-card-subtitle>
-      <img src="assets/icon/pin-icon.svg" />
+      <img src="assets/icon/svgs/pin-icon.svg" />
       <span>{{ trip.route.location | cytrans }}</span>
     </ion-card-subtitle>
   </ion-card-header>
@@ -12,16 +12,14 @@
     <div class="data">{{ trip.from | dateRange: trip.route.duration }}</div>
     <div class="info">
       <div class="distance">
-        <img src="assets/icon/pills-icon.svg" />
+        <img src="assets/icon/svgs/pills-icon.svg" />
         <span>{{ trip.route.distance | distance }}</span>
       </div>
       <div class="activities">
-        <ng-container *ngFor="let act of trip.route.activities">
-          <div>{{ act | cytrans }}</div>
-        </ng-container>
+        <app-activities [activities]="trip.route.activities"></app-activities>
       </div>
       <div class="duration">
-        <img src="assets/icon/calendar-icon.svg" />
+        <img src="assets/icon/svgs/calendar-icon.svg" />
         <span>{{ trip.route.duration }} {{ 'giorni' | cytrans }}</span>
       </div>
     </div>
