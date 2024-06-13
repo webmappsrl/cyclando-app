@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { loadUser, loadUserProfile } from '../state/auth/auth.actions';
+import { loadUserProfile } from '../state/auth/auth.actions';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { selectUserProfile } from '../state/auth/auth.selector';
@@ -25,7 +25,6 @@ export class UserHomePage implements OnInit {
   }
 
   ngOnInit(): void {
-    this._store.dispatch(loadUser());
     this._store.dispatch(loadUserProfile());
   }
 
