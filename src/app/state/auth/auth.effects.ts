@@ -52,6 +52,7 @@ const mokUserProfile: UserProfile = {
           it: 'il-sud-ovest-della-sardegna',
           en: 'the-south-west-of-sardinia',
         },
+        pdf_url: 'https://s29.q4cdn.com/175625835/files/doc_downloads/test.pdf',
         image_url:
           'https://becyclando.dev.cyclando.com/media/2151/conversions/sardegna-sud-ovest-nebida-ragazza-in-bicicletta-dolcevita-SF0226-thumb.webp',
         activities: [
@@ -90,15 +91,18 @@ export class AuthEffects {
       ofType(register),
       mergeMap(({ name, email, password, password_confirmation, lang }) =>
         this._http
-          .post<User>(`${env.api}/v1/auth/register`, {
-            name,
-            email,
-            password,
-            password_confirmation,
-            lang,
-          })
+          .post<{ message: string; success: boolean }>(
+            `${env.api}/v1/auth/register`,
+            {
+              name,
+              email,
+              password,
+              password_confirmation,
+              lang,
+            },
+          )
           .pipe(
-            map(user => registerSuccess({ user })),
+            map(response => registerSuccess(response)),
             catchError(error => of(registerFailure({ error: error.message }))),
           ),
       ),
@@ -160,10 +164,18 @@ export class AuthEffects {
       ),
     ),
   );
+  navigateToWaitEmail$ = createEffect(
+    () =>
+      this._actions$.pipe(
+        ofType(registerSuccess),
+        map(() => this._router.navigate(['/wait-email-confirm'])),
+      ),
+    { dispatch: false },
+  );
   navigateToHome$ = createEffect(
     () =>
       this._actions$.pipe(
-        ofType(loginSuccess, registerSuccess),
+        ofType(loginSuccess, loadUserSuccess),
         map(() => this._router.navigate(['/user-home'])),
       ),
     { dispatch: false },
