@@ -36,7 +36,7 @@ export class LangService extends TranslateService implements TranslateService {
       useDefaultLang,
       isolate,
       true,
-      'en',
+      'it',
     );
     this.setTranslation('it', cyIT);
     this.setTranslation('en', cyEN);
