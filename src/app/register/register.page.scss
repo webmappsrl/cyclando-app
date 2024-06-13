@@ -1,4 +1,4 @@
-:host {
+.register-page {
   h1 {
     font-weight: bold;
     margin: 8px 0px;
@@ -8,6 +8,7 @@
     line-height: 1.5;
   }
   ion-list {
+    --ion-item-background: transparent;
     margin-bottom: 24px;
   }
   ion-item {

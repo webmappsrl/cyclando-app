@@ -18,9 +18,10 @@ export class TripPdfViewerComponent implements AfterViewInit {
   pdfContainer!: ElementRef<HTMLDivElement>;
   @Input() trip!: Trip;
 
-  public minZoom = 0.33;
-  public maxZoom = 3;
-  public zoomLevels = [
+  minZoom = 0.33;
+  maxZoom = 3;
+
+  zoomLevels = [
     'auto',
     'page-actual',
     'page-fit',

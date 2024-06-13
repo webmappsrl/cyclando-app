@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  ViewEncapsulation,
+} from '@angular/core';
 import { loadUserProfile } from '../state/auth/auth.actions';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -11,6 +16,8 @@ import { UtilityService } from '../shared/services/utility.service';
   selector: 'app-user-home',
   templateUrl: './user-home.page.html',
   styleUrls: ['./user-home.page.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class UserHomePage implements OnInit {
   //TODO: controllo degli errori nel recuper dello user profile

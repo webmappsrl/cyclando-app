@@ -1,4 +1,9 @@
-import { Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  ViewEncapsulation,
+} from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Trip } from 'src/app/models/user.model';
 import { TripPdfViewerComponent } from '../trip-pdf-viewer/trip-pdf-viewer.component';
@@ -7,6 +12,8 @@ import { TripPdfViewerComponent } from '../trip-pdf-viewer/trip-pdf-viewer.compo
   selector: 'app-trip-card',
   templateUrl: './trip-card.component.html',
   styleUrls: ['./trip-card.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class TripCardComponent {
   @Input() trip!: Trip;

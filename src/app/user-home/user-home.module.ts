@@ -11,6 +11,7 @@ import { TripCardComponent } from './components/trip-card/trip-card.component';
 import { CyPipeModule } from '../shared/pipes/pipe.module';
 import { TripPdfViewerComponent } from './components/trip-pdf-viewer/trip-pdf-viewer.component';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+import { CyComponentsModule } from '../shared/components/components.module';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
     UserHomePageRoutingModule,
     CyPipeModule,
     NgxExtendedPdfViewerModule,
+    CyComponentsModule,
   ],
   declarations: [UserHomePage, TripCardComponent, TripPdfViewerComponent],
 })

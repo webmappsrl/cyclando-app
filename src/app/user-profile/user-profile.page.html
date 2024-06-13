@@ -11,7 +11,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="user-profile-page">
   <div class="container">
     <div *ngIf="userProfile$ | async as up" class="user-profile-top">
       <div class="user-profile">{{getInitials(up.user.name)}}</div>
@@ -21,13 +21,13 @@
       <ion-list-header>
         <ion-label>{{'Assistenza' | cytrans}}</ion-label>
       </ion-list-header>
-      <ion-item>
+      <ion-item [button]="true">
         <ion-label>{{'Domande Frequenti' | cytrans}}</ion-label>
       </ion-item>
-      <ion-item>
+      <ion-item [button]="true">
         <ion-label>{{'Parla con un operatore' | cytrans}}</ion-label>
       </ion-item>
-      <ion-item>
+      <ion-item [button]="true">
         <ion-label>{{'Lascia una recensione' | cytrans}}</ion-label>
       </ion-item>
     </ion-list>
@@ -35,13 +35,13 @@
       <ion-list-header>
         <ion-label>{{'Generali' | cytrans}}</ion-label>
       </ion-list-header>
-      <ion-item>
+      <ion-item [button]="true">
         <ion-label>{{'Privacy Policy' | cytrans}}</ion-label>
       </ion-item>
-      <ion-item>
+      <ion-item [button]="true">
         <ion-label>{{'Parla con un operatore' | cytrans}}</ion-label>
       </ion-item>
-      <ion-item>
+      <ion-item [button]="true">
         <ion-label>{{'Lascia una recensione' | cytrans}}</ion-label>
       </ion-item>
     </ion-list>

@@ -16,7 +16,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="user-home-page">
   <div class="container" *ngIf="userProfile$ | async as userProfile">
     <div
       *ngIf="userProfile.purchased_trips && userProfile.purchased_trips.length > 0; else noTrips"
