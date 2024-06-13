@@ -27,6 +27,7 @@ export interface TripRoute {
   saleable?: boolean;
   slug: TripRouteSlug;
   image_url: string;
+  pdf_url?: string;
   activities: TripRouteActivity[];
   location: TripRouteLocation;
   parent_location: TripRouteParentLocation;
