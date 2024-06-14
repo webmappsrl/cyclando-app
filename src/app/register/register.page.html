@@ -18,7 +18,7 @@
       Entra gratis nella community e ricevi offerte esclusive e nuovi itinerari
       per te.
     </p>
-    <form id="register-form" [formGroup]="registerForm">
+    <form id="register-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
       <ion-list>
         <ion-item>
           <ion-input
@@ -118,6 +118,24 @@
         >
           <ion-text class="inpt-error" color="danger">
             Passwords do not match.
+          </ion-text>
+        </div>
+        <ion-item class="privacy">
+          <ion-checkbox
+            slot="start"
+            mode="md"
+            formControlName="privacy"
+          ></ion-checkbox>
+          <ion-label
+            >Accetto la
+            <span class="link" (click)="openPrivacyPolicy()"
+              >privacy policy</span
+            >del servizio</ion-label
+          >
+        </ion-item>
+        <div *ngIf="(submitted$|async) && registerForm.get('privacy')?.invalid">
+          <ion-text class="inpt-error" color="danger">
+            Devi accettare i termini e le condizioni
           </ion-text>
         </div>
       </ion-list>

@@ -9,6 +9,9 @@ import { UserHomePageRoutingModule } from './user-home-routing.module';
 import { UserHomePage } from './user-home.page';
 import { TripCardComponent } from './components/trip-card/trip-card.component';
 import { CyPipeModule } from '../shared/pipes/pipe.module';
+import { TripPdfViewerComponent } from './components/trip-pdf-viewer/trip-pdf-viewer.component';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+import { CyComponentsModule } from '../shared/components/components.module';
 
 @NgModule({
   imports: [
@@ -17,7 +20,9 @@ import { CyPipeModule } from '../shared/pipes/pipe.module';
     IonicModule,
     UserHomePageRoutingModule,
     CyPipeModule,
+    NgxExtendedPdfViewerModule,
+    CyComponentsModule,
   ],
-  declarations: [UserHomePage, TripCardComponent],
+  declarations: [UserHomePage, TripCardComponent, TripPdfViewerComponent],
 })
 export class UserHomePageModule {}

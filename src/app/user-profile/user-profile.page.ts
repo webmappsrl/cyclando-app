@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from '@angular/core';
 import { UtilityService } from '../shared/services/utility.service';
 import { Observable } from 'rxjs';
 import { UserProfile } from '../models/user.model';
@@ -7,9 +11,11 @@ import { selectUserProfile } from '../state/auth/auth.selector';
 import { logout } from '../state/auth/auth.actions';
 
 @Component({
-  selector: 'app-user-profile',
+  selector: 'cy-user-profile',
   templateUrl: './user-profile.page.html',
   styleUrls: ['./user-profile.page.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class UserProfilePage {
   userProfile$: Observable<UserProfile | undefined>;

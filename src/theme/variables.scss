@@ -65,10 +65,16 @@
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
 
+  --ion-color-primary: #f18f08; /* Colore del pulsante principale */
+  --ion-color-primary-rgb: 241, 143, 8;
+  --ion-color-primary-contrast: #000000;
+  --ion-color-primary-contrast-rgb: 0, 0, 0;
+  --ion-color-primary-shade: #d47e07;
+  --ion-color-primary-tint: #f29a21;
+
   /* Custom background color */
   --ion-background-color: #fffbf7; /* Colore di sfondo */
   --ion-color-primary-contrast: #ffffff;
-  --ion-color-primary: #f18f08; /* Colore del pulsante principale */
   --ion-color-primary-light: #ffd49a;
   --ion-color-secondary: #add8e6; /* Colore del pulsante secondario */
   --ion-text-color-primary: #333333; /* Colore del testo principale */

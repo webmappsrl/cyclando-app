@@ -1,4 +1,4 @@
-:host {
+cy-home {
   ion-content {
     --background: linear-gradient(#ffecd1, 25%, #fff);
     font-family: var(--ion-font-family); /* Applicazione del font */
@@ -59,17 +59,6 @@
 
   ion-button {
     height: 55px; /* Altezza dei pulsanti */
-  }
-
-  .create-account {
-    --background: var(--ion-color-primary);
-    --color: var(--ion-color-primary-contrast);
-  }
-
-  .login-account {
-    --background: var(--ion-color-contrast);
-    --border-width: 1px;
-    color: var(--ion-color-primary);
   }
 
   small {

@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { loadUser } from './state/auth/auth.actions';
 
 @Component({
-  selector: 'app-root',
+  selector: 'cy-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  constructor(private _router: Router) {}
+  constructor(private _store: Store) {}
 
   ngOnInit(): void {
-    if ('access_token' in localStorage) this._router.navigate(['/user-home']);
+    this._store.dispatch(loadUser());
   }
 }

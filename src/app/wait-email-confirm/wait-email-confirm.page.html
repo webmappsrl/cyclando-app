@@ -1,0 +1,27 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>{{'Conferma Email' | cytrans}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+    <h1>{{'Verifica il tuo indirizzo email!' | cytrans}}</h1>
+    <p>
+      {{'Una email di verifica è stata inviata al tuo indirizzo' | cytrans}}
+      <span class="email">{{email$|async}}</span><br />
+      {{'Controlla la tua mail e fai click sul link nell\'email per completare
+      la registrazione dell\'account.' | cytrans}}
+    </p>
+    <p>
+      {{'se non ricevi l\'e-mail entro i prossimi 5 minuti, utilizza il pulsante
+      in basso per inviare nuovamente l\'e-mail di verifica.' | cytrans}}
+    </p>
+    <ion-button expand="block" (click)="sendEmail()">
+      {{'INVIA EMAIL DI VERIFICA' | cytrans}}
+    </ion-button>
+    <ion-button fill="outline" expand="block" routerLink="/login">
+      {{"ACCEDI AL TUO ACCOUNT" | cytrans}}
+    </ion-button>
+  </div>
+</ion-content>

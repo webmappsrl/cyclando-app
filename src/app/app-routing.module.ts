@@ -34,6 +34,13 @@ const routes: Routes = [
         m => m.UserProfilePageModule,
       ),
   },
+  {
+    path: 'wait-email-confirm',
+    loadChildren: () =>
+      import('./wait-email-confirm/wait-email-confirm.module').then(
+        m => m.WaitEmailConfirmPageModule,
+      ),
+  },
 ];
 
 @NgModule({

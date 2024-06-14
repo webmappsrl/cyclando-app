@@ -1,0 +1,11 @@
+cy-wait-email-confirm {
+  .container {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .email {
+    color: var(--ion-color-primary);
+    font-weight: 600;
+  }
+}

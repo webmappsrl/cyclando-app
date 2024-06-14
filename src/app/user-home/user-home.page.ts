@@ -1,5 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { loadUser, loadUserProfile } from '../state/auth/auth.actions';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  ViewEncapsulation,
+} from '@angular/core';
+import { loadUserProfile } from '../state/auth/auth.actions';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { selectUserProfile } from '../state/auth/auth.selector';
@@ -8,9 +13,11 @@ import { Router } from '@angular/router';
 import { UtilityService } from '../shared/services/utility.service';
 
 @Component({
-  selector: 'app-user-home',
+  selector: 'cy-user-home',
   templateUrl: './user-home.page.html',
   styleUrls: ['./user-home.page.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class UserHomePage implements OnInit {
   //TODO: controllo degli errori nel recuper dello user profile
@@ -25,7 +32,6 @@ export class UserHomePage implements OnInit {
   }
 
   ngOnInit(): void {
-    this._store.dispatch(loadUser());
     this._store.dispatch(loadUserProfile());
   }
 

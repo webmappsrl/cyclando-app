@@ -35,18 +35,19 @@ export const authReducer = createReducer(
       error: undefined,
     };
   }),
-  on(registerSuccess, (state, { user }) => ({
-    ...state,
-    user,
-    loading: false,
-    emailConfirmed: false,
-    isAuthenticated: true,
-    error: undefined,
-  })),
+  on(registerSuccess, (state, { email, password }) => {
+    localStorage.setItem('register', JSON.stringify({ email, password }));
+    return {
+      ...state,
+      loading: false,
+      emailConfirmed: false,
+      isAuthenticated: true,
+      error: undefined,
+    };
+  }),
   on(
     loginFailure,
     registerFailure,
-    loadUserFailure,
     loadUserProfileFailure,
     (state, { error }) => ({
       ...state,
@@ -54,6 +55,15 @@ export const authReducer = createReducer(
       error,
     }),
   ),
+  on(loadUserFailure, (state, { error }) => {
+    if (error.trim() == 'Unauthenticated.')
+      localStorage.removeItem('access_token');
+    return {
+      ...state,
+      loading: false,
+      error,
+    };
+  }),
   on(logout, state => ({ ...state, loading: true })),
   on(logoutSuccess, state => ({
     ...state,
@@ -74,10 +84,13 @@ export const authReducer = createReducer(
     isAuthenticated: true,
     error: undefined,
   })),
-  on(loadUserProfileSuccess, (state, { userProfile }) => ({
-    ...state,
-    userProfile,
-    loading: false,
-    error: undefined,
-  })),
+  on(loadUserProfileSuccess, (state, { userProfile }) => {
+    console.log(userProfile);
+    return {
+      ...state,
+      userProfile,
+      loading: false,
+      error: undefined,
+    };
+  }),
 );

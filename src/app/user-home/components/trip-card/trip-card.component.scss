@@ -1,8 +1,10 @@
-:host {
-  ion-card {
+cy-trip-card {
+  trip-card {
     --background: white;
     margin-inline: 0;
     border-radius: 14px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    margin-bottom: 26px;
 
     > img {
       max-height: 190px;

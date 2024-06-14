@@ -1,0 +1,34 @@
+cy-activities {
+  .activity,
+  .multi-activity {
+    display: flex;
+    align-items: center;
+  }
+
+  .activity-icon {
+    padding-right: 8px;
+  }
+
+  .activity-icon:last-of-type {
+    padding-right: 0;
+  }
+
+  .activity-name {
+    padding-left: 8px;
+  }
+
+  .tooltip {
+    --background: var(--ion-color-primary-light);
+    ion-content {
+      --background: var(--ion-color-primary-light);
+    }
+    .tooltip-content {
+      display: flex;
+      flex-direction: column;
+      .tooltip-activity {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+}
