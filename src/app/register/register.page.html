@@ -7,13 +7,13 @@
         color="medium"
       ></ion-back-button>
     </ion-buttons>
-    <ion-title>Registrati</ion-title>
+    <ion-title>{{'Registrati' | cytrans}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div class="container">
-    <h1>Pronti per l’avventura?</h1>
+    <h1>{{'Pronti per l’avventura?' | cytrans}}</h1>
     <p>
       Entra gratis nella community e ricevi offerte esclusive e nuovi itinerari
       per te.
@@ -35,7 +35,7 @@
             color="danger"
             *ngIf="registerForm.get('name')?.errors?.['required']"
           >
-            Name is required.
+            {{'Nome richiesto.' | cytrans}}
           </ion-text>
         </div>
         <ion-item>
@@ -53,7 +53,7 @@
             color="danger"
             *ngIf="registerForm.get('surname')?.errors?.['required']"
           >
-            Surname is required.
+            {{'Cognome richiesto.' | cytrans}}
           </ion-text>
         </div>
         <ion-item>
@@ -71,14 +71,14 @@
             color="danger"
             *ngIf="registerForm.get('email')?.errors?.['required']"
           >
-            Email is required.
+            {{'Email richiesta.' | cytrans}}
           </ion-text>
           <ion-text
             class="inpt-error"
             color="danger"
             *ngIf="registerForm.get('email')?.errors?.['email']"
           >
-            Invalid email format.
+            {{'Formato email non valido.' | cytrans}}
           </ion-text>
         </div>
         <ion-item>
@@ -96,14 +96,14 @@
             color="danger"
             *ngIf="registerForm.get('password')?.errors?.['required']"
           >
-            Password is required.
+            {{'Password richiesta.' | cytrans}}
           </ion-text>
           <ion-text
             class="inpt-error"
             color="danger"
             *ngIf="registerForm.get('password')?.errors?.['minlength']"
           >
-            8 characters long.
+            {{'La password deve avere almeno 8 caratteri.' | cytrans}}
           </ion-text>
         </div>
         <ion-item>
@@ -117,7 +117,7 @@
           *ngIf="registerForm.errors?.['stringMismatch'] && registerForm.get('password')?.touched"
         >
           <ion-text class="inpt-error" color="danger">
-            Passwords do not match.
+            {{'Le password non corrispondono.' | cytrans}}
           </ion-text>
         </div>
         <ion-item class="privacy">
@@ -127,20 +127,20 @@
             formControlName="privacy"
           ></ion-checkbox>
           <ion-label
-            >Accetto la
+            >{{'Accetto la' | cytrans}}
             <span class="link" (click)="openPrivacyPolicy()"
               >privacy policy</span
-            >del servizio</ion-label
+            >{{'del servizio'| cytrans}}</ion-label
           >
         </ion-item>
         <div *ngIf="(submitted$|async) && registerForm.get('privacy')?.invalid">
           <ion-text class="inpt-error" color="danger">
-            Devi accettare i termini e le condizioni
+            {{'Devi accettare i termini e le condizioni' | cytrans}}
           </ion-text>
         </div>
       </ion-list>
       <ion-button class="submit-login" expand="block" type="submit"
-        >REGISTRATI</ion-button
+        >{{'REGISTRATI' | cytrans}}</ion-button
       >
     </form>
   </div>
