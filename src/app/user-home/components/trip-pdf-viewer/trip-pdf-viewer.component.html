@@ -11,7 +11,7 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<ion-content class="ion-padding">
+<ion-content>
   <div class="pdf-container" #pdfContainer>
     <ngx-extended-pdf-viewer
       *ngIf="trip && trip.route.pdf_url"
@@ -19,7 +19,7 @@
       [(zoom)]="zoomSetting"
       [minZoom]="minZoom"
       [maxZoom]="maxZoom"
-      height="auto"
+      [height]="'100%'"
       [zoomLevels]="zoomLevels"
       [handTool]="true"
       [showToolbar]="false"
