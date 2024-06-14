@@ -11,7 +11,7 @@ import { selectError, selectLoading } from '../state/auth/auth.selector';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-login',
+  selector: 'cy-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

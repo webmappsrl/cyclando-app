@@ -9,7 +9,7 @@ import { Trip } from 'src/app/models/user.model';
 import { TripPdfViewerComponent } from '../trip-pdf-viewer/trip-pdf-viewer.component';
 
 @Component({
-  selector: 'app-trip-card',
+  selector: 'cy-trip-card',
   templateUrl: './trip-card.component.html',
   styleUrls: ['./trip-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

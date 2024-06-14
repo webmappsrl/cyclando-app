@@ -1,7 +1,6 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  ElementRef,
   Input,
   ViewChild,
   ViewEncapsulation,
@@ -11,7 +10,7 @@ import { LangService } from '../../services/lang.service';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
-  selector: 'app-activities',
+  selector: 'cy-activities',
   templateUrl: './activities.component.html',
   styleUrls: ['./activities.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -22,7 +21,7 @@ export class ActivitiesComponent {
   @ViewChild('popover') popover!: any;
   isOpen$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  constructor(private _languageService: LangService) {}
+  constructor(private _languageSvc: LangService) {}
 
   private activityIcons: { [key: string]: string } = {
     'tour in bici': 'assets/icon/svgs/bike-icon.svg',
@@ -41,14 +40,14 @@ export class ActivitiesComponent {
 
   getIcon(activity: TripRouteActivity): string {
     const lang: keyof TripRouteActivity =
-      (this._languageService.currentLang as keyof TripRouteActivity) ||
-      (this._languageService.defaultLang as keyof TripRouteActivity) ||
+      (this._languageSvc.currentLang as keyof TripRouteActivity) ||
+      (this._languageSvc.defaultLang as keyof TripRouteActivity) ||
       'it';
     const activityName: string = activity[lang] || '';
     return this.activityIcons[activityName.toLowerCase()] || '';
   }
 
-  presentPopover(e: Event) {
+  presentPopover(e: Event): void {
     this.popover.event = e;
     this.isOpen$.next(true);
   }

@@ -10,7 +10,7 @@ import { stringMatchValidator } from '../shared/validators/string-match.validato
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
-  selector: 'app-register',
+  selector: 'cy-register',
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

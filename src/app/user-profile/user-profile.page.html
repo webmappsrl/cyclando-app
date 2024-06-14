@@ -11,7 +11,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="user-profile-page">
+<ion-content>
   <div class="container">
     <div *ngIf="userProfile$ | async as up" class="user-profile-top">
       <div class="user-profile">{{getInitials(up.user.name)}}</div>

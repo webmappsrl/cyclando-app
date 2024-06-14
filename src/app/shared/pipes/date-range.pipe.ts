@@ -17,12 +17,12 @@ export class DateRangePipe implements PipeTransform {
   constructor(private _langSvc: LangService) {}
 
   transform(startDate: string, days: number = 0): string {
-    const endDate: Date = this.calculateEndDate(startDate, days);
-    const startDateFormatted: string = this.formatDate(
+    const endDate: Date = this._calculateEndDate(startDate, days);
+    const startDateFormatted: string = this._formatDate(
       startDate,
       'd MMMM yyyy',
     );
-    const endDateFormatted: string = this.formatDate(endDate, 'd MMMM yyyy');
+    const endDateFormatted: string = this._formatDate(endDate, 'd MMMM yyyy');
 
     let result: string;
 
@@ -31,10 +31,10 @@ export class DateRangePipe implements PipeTransform {
       result = `${startDateFormatted} - ${endDateFormatted}`;
     } else if (!isSameMonth(new Date(startDate), endDate)) {
       // Caso: giorno e mese diversi
-      result = `${this.formatDate(startDate, 'd MMMM')} - ${endDateFormatted}`;
+      result = `${this._formatDate(startDate, 'd MMMM')} - ${endDateFormatted}`;
     } else if (!isSameDay(new Date(startDate), endDate)) {
       // Caso: solo giorno diverso
-      result = `${this.formatDate(startDate, 'd')} - ${endDateFormatted}`;
+      result = `${this._formatDate(startDate, 'd')} - ${endDateFormatted}`;
     } else {
       // Caso: stesso giorno, mese e anno
       result = `${startDateFormatted}`;
@@ -43,12 +43,12 @@ export class DateRangePipe implements PipeTransform {
     return result;
   }
 
-  private formatDate(date: string | Date, format: string): string {
+  private _formatDate(date: string | Date, format: string): string {
     // Impostiamo la localizzazione qui tramite le opzioni di formato
     return fm(new Date(date), format, { locale: itLocale });
   }
 
-  private calculateEndDate(startDate: string, days: number): Date {
+  private _calculateEndDate(startDate: string, days: number): Date {
     return addDays(new Date(startDate), days - 1);
   }
 }

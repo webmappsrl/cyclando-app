@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 import { UtilityService } from '../shared/services/utility.service';
 
 @Component({
-  selector: 'app-user-home',
+  selector: 'cy-user-home',
   templateUrl: './user-home.page.html',
   styleUrls: ['./user-home.page.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

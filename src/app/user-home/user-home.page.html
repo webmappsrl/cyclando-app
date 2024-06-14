@@ -16,16 +16,16 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="user-home-page">
+<ion-content>
   <div class="container" *ngIf="userProfile$ | async as userProfile">
     <div
       *ngIf="userProfile.purchased_trips && userProfile.purchased_trips.length > 0; else noTrips"
     >
       <h2>{{'Documenti di viaggio' | cytrans}}</h2>
-      <app-trip-card
+      <cy-trip-card
         *ngFor="let trip of userProfile.purchased_trips"
         [trip]="trip"
-      ></app-trip-card>
+      ></cy-trip-card>
     </div>
     <ng-template #noTrips>
       <div class="no-trips">

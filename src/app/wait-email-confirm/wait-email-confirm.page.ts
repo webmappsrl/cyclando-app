@@ -7,7 +7,7 @@ import {
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
-  selector: 'app-wait-email-confirm',
+  selector: 'cy-wait-email-confirm',
   templateUrl: './wait-email-confirm.page.html',
   styleUrls: ['./wait-email-confirm.page.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

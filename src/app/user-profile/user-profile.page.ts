@@ -11,7 +11,7 @@ import { selectUserProfile } from '../state/auth/auth.selector';
 import { logout } from '../state/auth/auth.actions';
 
 @Component({
-  selector: 'app-user-profile',
+  selector: 'cy-user-profile',
   templateUrl: './user-profile.page.html',
   styleUrls: ['./user-profile.page.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

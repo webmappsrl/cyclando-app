@@ -1,19 +1,13 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  Input,
-  ViewChild,
-} from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Trip } from 'src/app/models/user.model';
 
 @Component({
-  selector: 'app-trip-pdf-viewer',
+  selector: 'cy-trip-pdf-viewer',
   templateUrl: './trip-pdf-viewer.component.html',
   styleUrls: ['./trip-pdf-viewer.component.scss'],
 })
-export class TripPdfViewerComponent implements AfterViewInit {
+export class TripPdfViewerComponent {
   @ViewChild('pdfContainer', { static: true })
   pdfContainer!: ElementRef<HTMLDivElement>;
   @Input() trip!: Trip;
@@ -42,8 +36,6 @@ export class TripPdfViewerComponent implements AfterViewInit {
   ];
   private _zoomSetting: number | string | undefined = 'page-width';
   constructor(private _modalCtrl: ModalController) {}
-
-  ngAfterViewInit(): void {}
 
   cancel(): Promise<boolean> {
     return this._modalCtrl.dismiss(null, 'cancel');

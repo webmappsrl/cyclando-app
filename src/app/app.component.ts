@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { loadUser } from './state/auth/auth.actions';
 
 @Component({
-  selector: 'app-root',
+  selector: 'cy-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
