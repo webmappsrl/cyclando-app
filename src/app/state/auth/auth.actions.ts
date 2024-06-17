@@ -64,3 +64,19 @@ export const loadUserProfileFailure = createAction(
   '[Auth] Load User Profile Failure',
   props<{ error: string }>(),
 );
+
+export const resendEmail = createAction(
+  '[Auth] Resend Email',
+  props<{ email: string }>(),
+);
+export const resendEmailSuccess = createAction(
+  '[Auth] Resend Email Success',
+  props<{
+    message: string;
+    success: boolean;
+  }>(),
+);
+export const resendEmailFailure = createAction(
+  '[Auth] Resend Email Failure',
+  props<{ error: string }>(),
+);

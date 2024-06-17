@@ -16,11 +16,14 @@ import {
   loadUserProfile,
   loadUserProfileFailure,
   loadUserProfileSuccess,
+  resendEmail,
+  resendEmailSuccess,
+  resendEmailFailure,
 } from './auth.actions';
 
 export const authReducer = createReducer(
   initialAuthState,
-  on(login, register, loadUser, loadUserProfile, state => ({
+  on(login, register, loadUser, loadUserProfile, resendEmail, state => ({
     ...state,
     loading: true,
   })),
@@ -45,10 +48,17 @@ export const authReducer = createReducer(
       error: undefined,
     };
   }),
+  on(resendEmailSuccess, state => {
+    return {
+      ...state,
+      loading: false,
+    };
+  }),
   on(
     loginFailure,
     registerFailure,
     loadUserProfileFailure,
+    resendEmailFailure,
     (state, { error }) => ({
       ...state,
       loading: false,

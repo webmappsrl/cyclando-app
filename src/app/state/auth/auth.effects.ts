@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { HttpClient } from '@angular/common/http';
-import { catchError, map, mergeMap, of } from 'rxjs';
+import { catchError, map, mergeMap, of, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { environment as env } from 'src/environments/environment';
 import { LoginResponse, User, UserProfile } from '../../models/user.model';
@@ -21,7 +21,12 @@ import {
   loadUserProfile,
   loadUserProfileSuccess,
   loadUserProfileFailure,
+  resendEmail,
+  resendEmailSuccess,
+  resendEmailFailure,
 } from './auth.actions';
+import { ToastController } from '@ionic/angular';
+import { LangService } from 'src/app/shared/services/lang.service';
 
 const mokUserProfile: UserProfile = {
   user: {
@@ -122,6 +127,8 @@ export class AuthEffects {
     private _actions$: Actions,
     private _http: HttpClient,
     private _router: Router,
+    private _toastController: ToastController,
+    private _langSvc: LangService,
   ) {}
 
   register$ = createEffect(() =>
@@ -142,6 +149,26 @@ export class AuthEffects {
           .pipe(
             map(response => registerSuccess({ ...response, email, password })),
             catchError(error => of(registerFailure({ error: error.message }))),
+          ),
+      ),
+    ),
+  );
+  resendEmail$ = createEffect(() =>
+    this._actions$.pipe(
+      ofType(resendEmail),
+      mergeMap(({ email }) =>
+        this._http
+          .post<{ message: string; success: boolean }>(
+            `${env.api}/v1/auth/resend/verification-email`,
+            {
+              email,
+            },
+          )
+          .pipe(
+            map(response => resendEmailSuccess(response)),
+            catchError(error =>
+              of(resendEmailFailure({ error: error.message })),
+            ),
           ),
       ),
     ),
@@ -207,6 +234,21 @@ export class AuthEffects {
       this._actions$.pipe(
         ofType(registerSuccess),
         map(() => this._router.navigate(['/wait-email-confirm'])),
+      ),
+    { dispatch: false },
+  );
+  opneToastEmail$ = createEffect(
+    () =>
+      this._actions$.pipe(
+        ofType(resendEmailSuccess),
+        tap(async () => {
+          const toast = await this._toastController.create({
+            message: this._langSvc.instant('Email inviata con successo!'),
+            duration: 2000,
+            position: 'bottom',
+          });
+          await toast.present();
+        }),
       ),
     { dispatch: false },
   );
