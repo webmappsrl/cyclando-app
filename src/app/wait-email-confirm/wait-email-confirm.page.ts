@@ -4,7 +4,10 @@ import {
   OnInit,
   ViewEncapsulation,
 } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { resendEmail } from '../state/auth/auth.actions';
+import { selectLoading } from '../state/auth/auth.selector';
 
 @Component({
   selector: 'cy-wait-email-confirm',
@@ -14,7 +17,10 @@ import { BehaviorSubject } from 'rxjs';
   encapsulation: ViewEncapsulation.None,
 })
 export class WaitEmailConfirmPage implements OnInit {
+  loading$: Observable<boolean> = this._store.select(selectLoading);
   email$: BehaviorSubject<string> = new BehaviorSubject<string>('');
+
+  constructor(private _store: Store) {}
 
   ngOnInit(): void {
     const savedValues = localStorage.getItem('register');
@@ -25,6 +31,6 @@ export class WaitEmailConfirmPage implements OnInit {
   }
 
   sendEmail(): void {
-    //TODO: resend email confirm
+    this._store.dispatch(resendEmail({ email: this.email$.value }));
   }
 }

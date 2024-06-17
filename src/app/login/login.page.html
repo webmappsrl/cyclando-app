@@ -74,8 +74,19 @@
       <div *ngIf="error$|async as error">
         <ion-text color="danger"> {{error | cytrans}} </ion-text>
       </div>
-      <ion-button class="submit-login" expand="block" type="submit"
-        >{{"ACCEDI" | cytrans}}</ion-button
+
+      <ion-button
+        class="submit-login"
+        expand="block"
+        type="submit"
+        [disabled]="loading$|async"
+      >
+        <ion-spinner
+          class="ion-margin"
+          slot="start"
+          *ngIf="loading$|async"
+        ></ion-spinner>
+        {{"ACCEDI" | cytrans}}</ion-button
       >
     </form>
   </div>

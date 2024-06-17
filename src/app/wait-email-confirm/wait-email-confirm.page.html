@@ -17,7 +17,16 @@
       {{'se non ricevi l\'e-mail entro i prossimi 5 minuti, utilizza il pulsante
       in basso per inviare nuovamente l\'e-mail di verifica.' | cytrans}}
     </p>
-    <ion-button expand="block" (click)="sendEmail()">
+    <ion-button
+      expand="block"
+      [disabled]="loading$|async"
+      (click)="sendEmail()"
+    >
+      <ion-spinner
+        class="ion-margin"
+        slot="start"
+        *ngIf="loading$|async"
+      ></ion-spinner>
       {{'INVIA EMAIL DI VERIFICA' | cytrans}}
     </ion-button>
     <ion-button fill="outline" expand="block" routerLink="/login">

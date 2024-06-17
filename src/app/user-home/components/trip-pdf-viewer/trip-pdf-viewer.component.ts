@@ -1,5 +1,6 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { BehaviorSubject } from 'rxjs';
 import { Trip } from 'src/app/models/user.model';
 
 @Component({
@@ -11,6 +12,7 @@ export class TripPdfViewerComponent {
   @ViewChild('pdfContainer', { static: true })
   pdfContainer!: ElementRef<HTMLDivElement>;
   @Input() trip!: Trip;
+  loading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
 
   minZoom = 0.33;
   maxZoom = 3;
@@ -37,15 +39,6 @@ export class TripPdfViewerComponent {
   private _zoomSetting: number | string | undefined = 'page-width';
   constructor(private _modalCtrl: ModalController) {}
 
-  cancel(): Promise<boolean> {
-    return this._modalCtrl.dismiss(null, 'cancel');
-  }
-
-  download(): void {
-    if (this.trip && this.trip.route.pdf_url) {
-      window.open(this.trip.route.pdf_url, '_blank');
-    }
-  }
   public get zoomSetting() {
     return String(this._zoomSetting);
   }
@@ -55,5 +48,19 @@ export class TripPdfViewerComponent {
     } else {
       this._zoomSetting = zoom + '%';
     }
+  }
+
+  cancel(): Promise<boolean> {
+    return this._modalCtrl.dismiss(null, 'cancel');
+  }
+
+  download(): void {
+    if (this.trip && this.trip.route.pdf_url) {
+      window.open(this.trip.route.pdf_url, '_blank');
+    }
+  }
+
+  pdfLoaded(): void {
+    this.loading$.next(false);
   }
 }

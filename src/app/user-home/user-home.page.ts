@@ -7,7 +7,7 @@ import {
 import { loadUserProfile } from '../state/auth/auth.actions';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { selectUserProfile } from '../state/auth/auth.selector';
+import { selectLoading, selectUserProfile } from '../state/auth/auth.selector';
 import { UserProfile } from '../models/user.model';
 import { Router } from '@angular/router';
 import { UtilityService } from '../shared/services/utility.service';
@@ -20,8 +20,8 @@ import { UtilityService } from '../shared/services/utility.service';
   encapsulation: ViewEncapsulation.None,
 })
 export class UserHomePage implements OnInit {
-  //TODO: controllo degli errori nel recuper dello user profile
   userProfile$: Observable<UserProfile | undefined>;
+  loading$: Observable<boolean> = this._store.select(selectLoading);
 
   constructor(
     private _store: Store,

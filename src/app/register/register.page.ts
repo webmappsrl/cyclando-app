@@ -7,7 +7,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { register } from '../state/auth/auth.actions';
 import { stringMatchValidator } from '../shared/validators/string-match.validators';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { selectLoading } from '../state/auth/auth.selector';
 
 @Component({
   selector: 'cy-register',
@@ -17,8 +18,9 @@ import { BehaviorSubject } from 'rxjs';
   encapsulation: ViewEncapsulation.None,
 })
 export class RegisterPage {
-  registerForm: FormGroup<any>;
+  loading$: Observable<boolean> = this._store.select(selectLoading);
   submitted$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  registerForm: FormGroup<any>;
 
   constructor(
     private _fb: FormBuilder,

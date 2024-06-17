@@ -33,7 +33,12 @@
       [showPrintButton]="false"
       [showDownloadButton]="false"
       [showSecondaryToolbarButton]="false"
+      (pdfLoaded)="pdfLoaded()"
       backgroundColor="#fffbf7"
     ></ngx-extended-pdf-viewer>
   </div>
+  <ion-loading
+    message="{{ 'Caricamento pdf' | cytrans }}"
+    [isOpen]="loading$ | async"
+  ></ion-loading>
 </ion-content>

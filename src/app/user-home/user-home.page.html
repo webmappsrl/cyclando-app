@@ -17,32 +17,40 @@
 </ion-header>
 
 <ion-content>
-  <div class="container" *ngIf="userProfile$ | async as userProfile">
-    <div
-      *ngIf="userProfile.purchased_trips && userProfile.purchased_trips.length > 0; else noTrips"
-    >
-      <h2>{{'Documenti di viaggio' | cytrans}}</h2>
-      <cy-trip-card
-        *ngFor="let trip of userProfile.purchased_trips"
-        [trip]="trip"
-      ></cy-trip-card>
-    </div>
-    <ng-template #noTrips>
-      <div class="no-trips">
-        <h1>{{'Non sono presenti documenti di viaggio' | cytrans}}</h1>
-        <p>
-          {{'Li ottieni dopo aver acquistato uno dei nostri percorsi sul nostro
-          sito' | cytrans}}
-          <br /><span>cyclando.com</span>
-        </p>
-        <ion-button
-          class="submit-login"
-          expand="block"
-          type="submit"
-          (click)="openWebpage()"
-          >VISITA IL SITO</ion-button
+  <div class="container">
+    <ng-container *ngIf="loading$|async; else loaded">
+      <ion-skeleton-text animated></ion-skeleton-text>
+      <cy-skeleton-trip-card></cy-skeleton-trip-card>
+    </ng-container>
+    <ng-template #loaded>
+      <ng-container *ngIf="userProfile$ | async as userProfile">
+        <div
+          *ngIf="userProfile.purchased_trips && userProfile.purchased_trips.length > 0; else noTrips"
         >
-      </div>
+          <h2>{{'Documenti di viaggio' | cytrans}}</h2>
+          <cy-trip-card
+            *ngFor="let trip of userProfile.purchased_trips"
+            [trip]="trip"
+          ></cy-trip-card>
+        </div>
+        <ng-template #noTrips>
+          <div class="no-trips">
+            <h1>{{'Non sono presenti documenti di viaggio' | cytrans}}</h1>
+            <p>
+              {{'Li ottieni dopo aver acquistato uno dei nostri percorsi sul
+              nostro sito' | cytrans}}
+              <br /><span>cyclando.com</span>
+            </p>
+            <ion-button
+              class="submit-login"
+              expand="block"
+              type="submit"
+              (click)="openWebpage()"
+              >VISITA IL SITO</ion-button
+            >
+          </div>
+        </ng-template>
+      </ng-container>
     </ng-template>
   </div>
 </ion-content>
