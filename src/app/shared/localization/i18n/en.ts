@@ -10,4 +10,5 @@ export const cyEN = {
   'Nome richiesto.': 'Name is required.',
   'Cognome richiesto.': 'Surname is required.',
   'Le password non corrispondono.': 'Passwords do not match.',
+  'Email inviata con successo!': 'Email successfully sent!',
 };
