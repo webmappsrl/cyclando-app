@@ -9,6 +9,7 @@ import {
 import { ModalController } from '@ionic/angular';
 import { BehaviorSubject } from 'rxjs';
 import { Trip } from '../../../models/user.model';
+import { NgxExtendedPdfViewerComponent } from 'ngx-extended-pdf-viewer';
 
 @Component({
   selector: 'cy-trip-pdf-viewer',
@@ -18,8 +19,8 @@ import { Trip } from '../../../models/user.model';
   encapsulation: ViewEncapsulation.None,
 })
 export class TripPdfViewerComponent {
-  @ViewChild('pdfContainer', { static: true })
-  pdfContainer!: ElementRef<HTMLDivElement>;
+  @ViewChild(NgxExtendedPdfViewerComponent)
+  private _pdfViewer!: NgxExtendedPdfViewerComponent;
   @Input() trip!: Trip;
   loading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
 
@@ -50,10 +51,10 @@ export class TripPdfViewerComponent {
 
   constructor(private _modalCtrl: ModalController) {}
 
-  public get zoomSetting() {
+  get zoomSetting() {
     return String(this._zoomSetting);
   }
-  public set zoomSetting(zoom: string) {
+  set zoomSetting(zoom: string) {
     if (isNaN(Number(zoom))) {
       this._zoomSetting = zoom;
     } else {
@@ -77,5 +78,10 @@ export class TripPdfViewerComponent {
 
   pdfLoaded(): void {
     this.loading$.next(false);
+  }
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+    this._pdfViewer.pdfLoadingStarts.emit(true);
   }
 }

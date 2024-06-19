@@ -12,8 +12,9 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <div class="pdf-container" #pdfContainer>
+  <div class="pdf-container">
     <ngx-extended-pdf-viewer
+      #pdfViewer
       *ngIf="trip && trip.route.pdf_url"
       [src]="trip.route.pdf_url"
       [(zoom)]="zoomSetting"

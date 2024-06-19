@@ -5,8 +5,8 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { Trip } from 'src/app/models/user.model';
 import { TripPdfViewerComponent } from '../trip-pdf-viewer/trip-pdf-viewer.component';
+import { Trip } from '../../../models/user.model';
 
 @Component({
   selector: 'cy-trip-card',
