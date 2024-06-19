@@ -8,6 +8,7 @@ import { Store } from '@ngrx/store';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { resendEmail } from '../state/auth/auth.actions';
 import { selectLoading } from '../state/auth/auth.selector';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'cy-wait-email-confirm',
@@ -20,7 +21,10 @@ export class WaitEmailConfirmPage implements OnInit {
   loading$: Observable<boolean> = this._store.select(selectLoading);
   email$: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
-  constructor(private _store: Store) {}
+  constructor(
+    private _store: Store,
+    private _navCtrl: NavController,
+  ) {}
 
   ngOnInit(): void {
     const savedValues = localStorage.getItem('register');
@@ -32,5 +36,9 @@ export class WaitEmailConfirmPage implements OnInit {
 
   sendEmail(): void {
     this._store.dispatch(resendEmail({ email: this.email$.value }));
+  }
+
+  navigateToLogin(): void {
+    this._navCtrl.navigateRoot('/login');
   }
 }
