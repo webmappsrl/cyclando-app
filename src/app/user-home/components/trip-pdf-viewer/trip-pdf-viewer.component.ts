@@ -1,12 +1,21 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  Input,
+  ViewChild,
+  ViewEncapsulation,
+} from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { BehaviorSubject } from 'rxjs';
-import { Trip } from 'src/app/models/user.model';
+import { Trip } from '../../../models/user.model';
 
 @Component({
   selector: 'cy-trip-pdf-viewer',
   templateUrl: './trip-pdf-viewer.component.html',
   styleUrls: ['./trip-pdf-viewer.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class TripPdfViewerComponent {
   @ViewChild('pdfContainer', { static: true })
@@ -37,6 +46,8 @@ export class TripPdfViewerComponent {
     4,
   ];
   private _zoomSetting: number | string | undefined = 'page-width';
+  private _currentZoomFactor: number = 1;
+
   constructor(private _modalCtrl: ModalController) {}
 
   public get zoomSetting() {
@@ -58,6 +69,10 @@ export class TripPdfViewerComponent {
     if (this.trip && this.trip.route.pdf_url) {
       window.open(this.trip.route.pdf_url, '_blank');
     }
+  }
+
+  updateZoomFactor(zoom: number): void {
+    this._currentZoomFactor = zoom;
   }
 
   pdfLoaded(): void {
