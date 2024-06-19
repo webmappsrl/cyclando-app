@@ -71,7 +71,7 @@ export const authReducer = createReducer(
     return {
       ...state,
       loading: false,
-      error,
+      error: undefined,
     };
   }),
   on(logout, state => ({ ...state, loading: true })),
