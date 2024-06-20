@@ -37,6 +37,10 @@
 //@import "@ionic/angular/css/palettes/dark.system.css";
 @import 'theme/variables.scss';
 
+:root {
+  --toolbar-min-height: 74px;
+}
+
 body {
   font-family: var(--ion-font-family);
 }
@@ -69,7 +73,7 @@ body {
   overflow: hidden;
 }
 ion-toolbar {
-  --min-height: 74px;
+  --min-height: var(--toolbar-min-height);
   --background: var(--ion-color-primary-contrast);
   border-bottom: 1px solid var(--ion-color-medium);
 }
