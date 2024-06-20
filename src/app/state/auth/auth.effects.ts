@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { HttpClient } from '@angular/common/http';
 import { catchError, map, mergeMap, of, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { environment as env } from 'src/environments/environment';
+import { LangService } from '../../shared/services/lang.service';
 import { LoginResponse, User, UserProfile } from '../../models/user.model';
 import {
   loadUser,
@@ -26,7 +26,7 @@ import {
   resendEmailFailure,
 } from './auth.actions';
 import { ToastController } from '@ionic/angular';
-import { LangService } from 'src/app/shared/services/lang.service';
+import { HttpClient } from '@angular/common/http';
 
 const mokUserProfile: UserProfile = {
   user: {
