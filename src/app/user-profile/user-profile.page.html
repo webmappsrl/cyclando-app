@@ -53,8 +53,19 @@
       (click)="logout()"
       >{{'Esci dal tuo account' | cytrans}}</ion-button
     >
-    <ion-button fill="clear" expand="block" color="danger"
+    <ion-button
+      id="btn-delete-account"
+      fill="clear"
+      expand="block"
+      color="danger"
       >{{'Elimina account' | cytrans}}</ion-button
     >
+    <ion-alert
+      trigger="btn-delete-account"
+      header="{{'Sicuro di voler eliminare il tuo account?' | cytrans}}"
+      message="{{'Una volta eliminato non sarà più possibile recuperarlo' | cytrans}}"
+      [buttons]="alertButtons"
+      (didDismiss)="deleteAccountResult($event)"
+    ></ion-alert>
   </div>
 </ion-content>
